@@ -44,6 +44,16 @@ dependencies:
     - chmod +x jq
 
 
+  post:
+    # Copy Apache conf into `site-available`
+    - cp apache-ci.conf /etc/apache2/sites-available
+
+    # Use `a2ensite` to create a symlink for the config
+    - a2ensite apache-ci.conf
+
+    # Restart the Apache server
+    - sudo service apache2 restart
+
 test:
   override:
     # This is just for us to see that the WP Pusher plugin was actually installed and is active
