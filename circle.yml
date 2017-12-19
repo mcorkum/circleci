@@ -29,6 +29,8 @@ dependencies:
     # Install WordPress
     - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=http://caldera.dev:8080 --title=WordPress --path=wordpress
 
+     - ./wp-cli.phar plugin install caldera-forms --path=wordpress
+
 test:
   override:
     # This is just for us to see that the WP Pusher plugin was actually installed and is active
