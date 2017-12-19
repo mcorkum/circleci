@@ -4,11 +4,11 @@ jobs:
     working_directory: /var/www/html
     docker:
       - image: php:7.1-apache
-      - image: mysql:5.6
-          environment:
-            - MYSQL_ROOT_PASSWORD=ubuntu
-            - MYSQL_USER=ubuntu
-            - MYSQL_PASSWORD=ubuntu
+      - image: circleci/mysql:5.7
+        environment:
+          - MYSQL_ROOT_PASSWORD=ubuntu
+          - MYSQL_USER=ubuntu
+          - MYSQL_PASSWORD=ubuntu
     steps:
       - checkout
       - run:
