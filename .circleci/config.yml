@@ -6,6 +6,9 @@ jobs:
       - image: php:7.1-apache
         environment:
           APP_ENV: test
+      - image: library/mysql:latest
+        env:
+          - MYSQL_ALLOW_EMPTY_PASSWORD=true
     steps:
       - run:
           name: Install system packages
