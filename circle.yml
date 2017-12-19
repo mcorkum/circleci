@@ -12,6 +12,15 @@ machine:
   hosts:
     caldera.dev: 127.0.0.1
 
+  environment:
+    APP_ENV: testing
+    APP_URL: 127.0.0.1
+    DB_HOST: 127.0.0.1
+    DB_URL: 127.0.0.1
+    DB_NAME: wordpress
+    DB_USER: ubuntu
+    DB_PASSWORD: ubuntu
+
 dependencies:
   pre:
     # No password is required for the MySQL user `ubuntu`
@@ -27,7 +36,7 @@ dependencies:
     - ./wp-cli.phar core download --allow-root --path=wordpress
 
     # Generate `wp-config.php` file
-    - ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=ubuntu --dbpass=root --dbhost=localhost --path=wordpress
+    - ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=ubuntu --dbpass=ubuntu --dbhost=localhost --path=wordpress
 
     # Install WordPress
     - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=http://caldera.dev:8080 --title=WordPress --path=wordpress
