@@ -39,7 +39,7 @@ dependencies:
     - unzip ngrok-stable-linux-amd64.zip
     - chmod +x ngrok
     - ./ngrok authtoken 5i1AZRNhGcYveH3yEgizn_4wHaf83EewrKEJWjyzDf7
-    - ./ngrok http 8080
+
     # Download json parser for determining ngrok tunnel
     - wget https://stedolan.github.io/jq/download/linux64/jq
     - chmod +x jq
@@ -57,6 +57,10 @@ dependencies:
 
     # Restart the Apache server
     - sudo service apache2 restart
+
+    # NGROK
+    - ./ngrok http 8080:
+        background: true
 
 test:
   override:
