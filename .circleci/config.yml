@@ -4,11 +4,14 @@ jobs:
     working_directory: /var/www/html
     docker:
       - image: php:7.1-apache
-        environment:
-          APP_ENV: test
       - image: library/mysql:latest
         env:
-          - MYSQL_ALLOW_EMPTY_PASSWORD=true
+        - MYSQL_ALLOW_EMPTY_PASSWORD=true \
+        - MYSQL_DATABASE=circle_test \
+        - MYSQL_HOST=127.0.0.1 \
+        - MYSQL_ROOT_HOST=% \
+        - MYSQL_USER=root
+        - image: circleci/node:4.8.2
     steps:
       - run:
           name: Install system packages
@@ -17,6 +20,9 @@ jobs:
           name: Install PHP extensions
           command: docker-php-ext-install pdo
       - checkout
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
       - run:
           name: Install Composer
           command: |
