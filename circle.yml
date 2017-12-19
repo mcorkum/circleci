@@ -32,6 +32,18 @@ dependencies:
     # Install Caldera
     - ./wp-cli.phar plugin install caldera-forms --path=wordpress
 
+    # Download ngrok and open tunnel to our application
+    - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+    - unzip ngrok-stable-linux-amd64.zip
+    - chmod +x ngrok
+    - ./ngrok authtoken $NGROK_TOKEN
+    - ./ngrok http 8080:
+        background: true
+    # Download json parser for determining ngrok tunnel
+    - wget https://stedolan.github.io/jq/download/linux64/jq
+    - chmod +x jq
+
+
 test:
   override:
     # This is just for us to see that the WP Pusher plugin was actually installed and is active
