@@ -16,52 +16,45 @@ general:
 dependencies:
   pre:
     # No password is required for the MySQL user `ubuntu`
-    - mysql -e 'CREATE DATABASE wordpress;' -uroot
+    - cd /var/ww/html; mysql -e 'CREATE DATABASE wordpress;' -uroot
 
     # Use cURL to fetch WP-CLI
-    - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    - cd /var/ww/html; curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
     # Make sure WP-CLI is executable
-    - chmod +x wp-cli.phar
+    - cd /var/ww/html; chmod +x wp-cli.phar
 
     # Download WordPress into `wordpress` directory
-    - ./wp-cli.phar core download --allow-root --path=wordpress
+    - cd /var/ww/html; ./wp-cli.phar core download --allow-root --path=wordpress
 
     # Generate `wp-config.php` file
-    - ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1 --path=wordpress
+    - cd /var/ww/html; ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1 --path=wordpress
 
     # Install WordPress
-    - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=http://caldera.dev:8080 --title=WordPress --path=wordpress
+    - cd /var/ww/html; ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=http://caldera.dev:8080 --title=WordPress --path=wordpress
 
     # Install Caldera
-    - ./wp-cli.phar plugin install caldera-forms --path=wordpress
+    - cd /var/ww/html; ./wp-cli.phar plugin install caldera-forms --path=wordpress
 
     # Download ngrok and open tunnel to our application
-    - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-    - unzip ngrok-stable-linux-amd64.zip
-    - chmod +x ngrok
-    - ./ngrok authtoken 5i1AZRNhGcYveH3yEgizn_4wHaf83EewrKEJWjyzDf7
+    - cd /var/ww/html; wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+    - cd /var/ww/html; unzip ngrok-stable-linux-amd64.zip
+    - cd /var/ww/html; chmod +x ngrok
+    - cd /var/ww/html; ./ngrok authtoken 5i1AZRNhGcYveH3yEgizn_4wHaf83EewrKEJWjyzDf7
 
     # Download json parser for determining ngrok tunnel
-    - wget https://stedolan.github.io/jq/download/linux64/jq
-    - chmod +x jq
+    # wget https://stedolan.github.io/jq/download/linux64/jq
+    # chmod +x jq
 
     - sudo unlink /usr/lib/apache2/modules/libphp5.so
     - sudo ln -s $PHPENV_ROOT/versions/$(phpenv global)/usr/lib/apache2/modules/libphp5.so /usr/lib/apache2/modules/libphp5.so
 
-    - sudo cp ./apache-ci.conf /etc/apache2/sites-available/default
+#    - sudo cp ./apache-ci.conf /etc/apache2/sites-available/000-default
     - sudo a2enmod rewrite
     - sudo service apache2 restart
 
   post:
-    # Copy Apache conf into `site-available`
-    # - sudo cp apache-ci.conf /etc/apache2/sites-available
 
-    # Use `a2ensite` to create a symlink for the config
-    # - sudo a2ensite apache-ci.conf
-
-    # Restart the Apache server
-    # - sudo service apache2 restart
 
     # NGROK
     # - ./ngrok http 80:
@@ -70,4 +63,4 @@ dependencies:
 test:
   override:
     # This is just for us to see that the WP Pusher plugin was actually installed and is active
-    - ./wp-cli.phar plugin list --path=wordpress
+    - cd /var/ww/html; ./wp-cli.phar plugin list --path=wordpress
