@@ -10,7 +10,8 @@ machine:
     caldera.dev: 127.0.0.1
 
 general:
-  build_dir: project
+  artifacts:
+    - "/var/log/apache2/"
 
 dependencies:
   pre:
@@ -46,6 +47,10 @@ dependencies:
     - chmod +x jq
 
 
+    - sudo cp ./apache-ci.conf /etc/apache2/sites-available/default
+    - sudo a2enmod rewrite
+    - sudo service apache2 restart
+
   post:
     # Copy Apache conf into `site-available`
     # - sudo cp apache-ci.conf /etc/apache2/sites-available
@@ -57,7 +62,7 @@ dependencies:
     # - sudo service apache2 restart
 
     # NGROK
-    - ./ngrok http 8080:
+    - ./ngrok http 80:
         background: true
 
 test:
