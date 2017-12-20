@@ -56,7 +56,7 @@ dependencies:
     - sudo ln -s $PHPENV_ROOT/versions/$(phpenv global)/usr/lib/apache2/modules/libphp5.so /usr/lib/apache2/modules/libphp5.so
     - sudo cp ./apache-ci.conf /etc/apache2/sites-available/wordpress.conf
     - cd /etc/apache2/sites-available; sudo a2enmod rewrite; sudo service apache2 restart; sudo a2ensite wordpress; sudo service apache2 reload
-    - ./ngrok http 3000:
+    - ./ngrok http 8080:
         background: true
 
 test:
