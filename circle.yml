@@ -58,8 +58,8 @@ dependencies:
     - cd /etc/apache2/sites-available; sudo a2enmod rewrite; sudo service apache2 restart; sudo a2ensite wordpress; sudo service apache2 reload
 
     # NGROK
-    - ./ngrok http 8080
-         background: true
+    # - ./ngrok http 8080
+         # background: true
 
 test:
   override:
