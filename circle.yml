@@ -64,8 +64,8 @@ dependencies:
     # - sudo service apache2 restart
 
     # NGROK
-    - ./ngrok http 80:
-        background: true
+    # - ./ngrok http 80:
+        # background: true
 
 test:
   override:
