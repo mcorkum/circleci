@@ -16,31 +16,31 @@ general:
 dependencies:
   pre:
     # No password is required for the MySQL user `ubuntu`
-    - cd /var/ww/html; mysql -e 'CREATE DATABASE wordpress;' -uroot
+    - cd /var/www/html; mysql -e 'CREATE DATABASE wordpress;' -uroot
 
     # Use cURL to fetch WP-CLI
-    - cd /var/ww/html; curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    - cd /var/www/html; curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
     # Make sure WP-CLI is executable
-    - cd /var/ww/html; chmod +x wp-cli.phar
+    - cd /var/www/html; chmod +x wp-cli.phar
 
     # Download WordPress into `wordpress` directory
-    - cd /var/ww/html; ./wp-cli.phar core download --allow-root --path=wordpress
+    - cd /var/www/html; ./wp-cli.phar core download --allow-root --path=wordpress
 
     # Generate `wp-config.php` file
-    - cd /var/ww/html; ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1 --path=wordpress
+    - cd /var/www/html; ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1 --path=wordpress
 
     # Install WordPress
-    - cd /var/ww/html; ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=http://caldera.dev:8080 --title=WordPress --path=wordpress
+    - cd /var/www/html; ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=http://caldera.dev:8080 --title=WordPress --path=wordpress
 
     # Install Caldera
-    - cd /var/ww/html; ./wp-cli.phar plugin install caldera-forms --path=wordpress
+    - cd /var/www/html; ./wp-cli.phar plugin install caldera-forms --path=wordpress
 
     # Download ngrok and open tunnel to our application
-    - cd /var/ww/html; wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-    - cd /var/ww/html; unzip ngrok-stable-linux-amd64.zip
-    - cd /var/ww/html; chmod +x ngrok
-    - cd /var/ww/html; ./ngrok authtoken 5i1AZRNhGcYveH3yEgizn_4wHaf83EewrKEJWjyzDf7
+    - cd /var/www/html; wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+    - cd /var/www/html; unzip ngrok-stable-linux-amd64.zip
+    - cd /var/www/html; chmod +x ngrok
+    - cd /var/www/html; ./ngrok authtoken 5i1AZRNhGcYveH3yEgizn_4wHaf83EewrKEJWjyzDf7
 
     # Download json parser for determining ngrok tunnel
     # wget https://stedolan.github.io/jq/download/linux64/jq
