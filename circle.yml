@@ -59,7 +59,7 @@ dependencies:
 
     # NGROK
     - ./ngrok http 8080
-        background: true
+         background: true
 
 test:
   override:
