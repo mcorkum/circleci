@@ -3,18 +3,19 @@ machine:
     America/Chicago
 
   php:
-    version: 7.1.3
+    version: 5.5.31
 
   # This will be added to the `/etc/hosts` file
   hosts:
     caldera.dev: 127.0.0.1
 
+general:
+  build_dir: /var/www/html
+
 dependencies:
   pre:
     # No password is required for the MySQL user `ubuntu`
     - mysql -e 'CREATE DATABASE wordpress;' -uroot
-
-    - cd /var/www/html
 
     # Use cURL to fetch WP-CLI
     - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -46,17 +47,14 @@ dependencies:
 
 
   post:
-    # Remove PHP5
-    - sudo rm /etc/apache2/mods-enabled/php5.load
-
     # Copy Apache conf into `site-available`
-    - sudo cp apache-ci.conf /etc/apache2/sites-available
+    # - sudo cp apache-ci.conf /etc/apache2/sites-available
 
     # Use `a2ensite` to create a symlink for the config
-    - sudo a2ensite apache-ci.conf
+    # - sudo a2ensite apache-ci.conf
 
     # Restart the Apache server
-    - sudo service apache2 restart
+    # - sudo service apache2 restart
 
     # NGROK
     - ./ngrok http 8080:
