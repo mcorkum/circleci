@@ -35,7 +35,7 @@ dependencies:
 
     # Install WordPress
     - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=caldera.dev --title=WordPress --path=wordpress
-    - cp ./wp-config.php ./wordpress/wp-config.php
+    - cp ./sample_wp-config.php ./wordpress/wp-config.php
 
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
