@@ -10,7 +10,7 @@ machine:
     caldera.dev: 127.0.0.1
 
 general:
-  build_dir: /var/www/html
+  build_dir: project
 
 dependencies:
   pre:
