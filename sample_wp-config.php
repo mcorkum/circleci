@@ -61,8 +61,8 @@ define('NONCE_SALT',       '|h,:4d`sS$HCt>8HE@M&Z0<#pBI!Ft$Yh%3NGo78ZoIHzHBP[-jz
  */
 $table_prefix = 'wp_';
 
-define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
-define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+define('WP_SITEURL', 'http://calderadev.ngrok.io');
+define('WP_HOME', 'http://calderadev.ngrok.io');
 
 /*That's all, stop editing! Happy blogging. */
 
