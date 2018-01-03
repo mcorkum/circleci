@@ -2,6 +2,10 @@ machine:
   timezone:
     America/Chicago
 
+  environment:
+    ngork_auth_token: d8NfARcu2wLE1hyeQd9J_6m4RuZQCCoKXJ3etDGnMv
+    ngork_subdomain: calderadev
+
   php:
     version: 5.5.31
 
@@ -41,7 +45,7 @@ dependencies:
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
     - unzip ngrok-stable-linux-amd64.zip
     - chmod +x ngrok
-    - ./ngrok authtoken 5i1AZRNhGcYveH3yEgizn_4wHaf83EewrKEJWjyzDf7
+    - ./ngrok authtoken $NGROK_AUTH_TOKEN
 
     # Download json parser for determining ngrok tunnel
     - wget https://stedolan.github.io/jq/download/linux64/jq
@@ -56,7 +60,7 @@ dependencies:
     - sudo ln -s $PHPENV_ROOT/versions/$(phpenv global)/usr/lib/apache2/modules/libphp5.so /usr/lib/apache2/modules/libphp5.so
     - sudo cp ./apache-ci.conf /etc/apache2/sites-available/wordpress.conf
     - cd /etc/apache2/sites-available; sudo a2enmod rewrite; sudo service apache2 restart; sudo a2ensite wordpress; sudo service apache2 reload
-    - ./ngrok http 8080:
+    - ./ngrok http -subdomain=$NGROK_SUBDOMAIN 8080:
         background: true
 
 test:
