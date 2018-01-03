@@ -41,6 +41,9 @@ dependencies:
     # Install Caldera
     - ./wp-cli.phar plugin install caldera-forms --path=wordpress
 
+    # Install diff plugin
+    - git clone git@gitlab.com:caldera-labs/cf-result-diff-plugin.git wordpress/wp-content/plugins/cf-result-diff-plugin
+
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
     - unzip ngrok-stable-linux-amd64.zip
