@@ -1,0 +1,4 @@
+path: wordpress
+url: http://example.com
+apache_modules:
+  - mod_rewrite

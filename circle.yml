@@ -3,6 +3,7 @@ machine:
     America/Chicago
 
   environment:
+    ngrok_url: calderadev.ngrok.io
     ngork_auth_token: d8NfARcu2wLE1hyeQd9J_6m4RuZQCCoKXJ3etDGnMv
     ngork_subdomain: calderadev
 
@@ -11,7 +12,7 @@ machine:
 
   # This will be added to the `/etc/hosts` file
   hosts:
-    caldera.dev: 127.0.0.1
+    calderadev.ngrok.io: 127.0.0.1
 
 general:
   artifacts:
@@ -32,10 +33,13 @@ dependencies:
     - ./wp-cli.phar core download --allow-root --path=wordpress
 
     # Generate `wp-config.php` file
-    - ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1 --path=wordpress
+    - ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1
 
     # Install WordPress
-    - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=calderadev.ngrok.io --title=WordPress --path=wordpress
+    - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url={$ngrok_url} --title=WordPress
+
+    # Permalinks
+    - ./wp-cli.phar rewrite structure '/%year%/%monthnum%/%postname%/' --hard
 
     # Install Caldera
     - ./wp-cli.phar plugin install caldera-forms --path=wordpress
@@ -53,9 +57,6 @@ dependencies:
     # Download json parser for determining ngrok tunnel
     - wget https://stedolan.github.io/jq/download/linux64/jq
     - chmod +x jq
-
-
-
 
   post:
     # Setup and restart apache
