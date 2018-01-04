@@ -10,6 +10,9 @@ machine:
   php:
     version: 5.5.31
 
+  node:
+    version: 4.6.0
+
   # This will be added to the `/etc/hosts` file
   hosts:
     calderadev.ngrok.io: 127.0.0.1
@@ -57,7 +60,7 @@ dependencies:
 
     # Install Ghost runner plugin to home directory
     - git clone https://gitlab.com/caldera-labs/ghostrunner-runner-runner.git
-    - cp .env ghost-runner-runner/.env
+    - cp .env ghost-runner-runner
 
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
