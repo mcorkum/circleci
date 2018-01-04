@@ -36,14 +36,13 @@ dependencies:
 
     # Install WordPress
     - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url=calderadev.ngrok.io --title=WordPress --path=wordpress
-    - cp ./sample_wp-config.php ./wordpress/wp-config.php
 
     # Install Caldera
     - ./wp-cli.phar plugin install caldera-forms --path=wordpress
 
     # Install diff plugin
     - git clone https://gitlab.com/caldera-labs/cf-result-diff-plugin.git wordpress/wp-content/plugins/cf-result-diff-plugin
-    - ./wp-cli.phar plugin activate cf-result-diff-plugin --path=wordpress
+    # - ./wp-cli.phar plugin activate cf-result-diff-plugin --path=wordpress
 
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
