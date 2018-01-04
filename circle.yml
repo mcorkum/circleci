@@ -68,7 +68,7 @@ dependencies:
     # Install Ghost runner plugin to home directory
     - git clone https://gitlab.com/caldera-labs/ghostrunner-runner-runner.git
     - cp .env ghost-runner-runner
-    - cd ghostrunner-runner-runner & npm install
+    - cd ghostrunner-runner-runner/ && npm install
 
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
