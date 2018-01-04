@@ -8,7 +8,8 @@ machine:
     ngork_subdomain: calderadev
 
   php:
-    version: 5.5.31
+    version: 7.0.17
+    # version: 5.5.31
 
   node:
     version: 4.6.0
@@ -24,9 +25,12 @@ general:
 dependencies:
   pre:
     # Setup and restart apache
-    - sudo unlink /usr/lib/apache2/modules/libphp5.so
-    - sudo ln -s $PHPENV_ROOT/versions/$(phpenv global)/usr/lib/apache2/modules/libphp5.so /usr/lib/apache2/modules/libphp5.so
+    # - sudo unlink /usr/lib/apache2/modules/libphp5.so
+    # - sudo ln -s $PHPENV_ROOT/versions/$(phpenv global)/usr/lib/apache2/modules/libphp5.so /usr/lib/apache2/modules/libphp5.so
+
+
     - sudo cp ./apache-ci.conf /etc/apache2/sites-available/wordpress.conf
+    - sudo rm /etc/apache2/mods-enabled/php5.load #damit php 7
     - cd /etc/apache2/sites-available; sudo a2enmod rewrite; sudo service apache2 restart; sudo a2ensite wordpress; sudo service apache2 reload
 
     # No password is required for the MySQL user `ubuntu`
@@ -53,11 +57,12 @@ dependencies:
 
     # Install diff plugin
     - git clone https://gitlab.com/caldera-labs/cf-result-diff-plugin.git wordpress/wp-content/plugins/cf-result-diff-plugin
-    - cd wordpress/wp-content/plugins/cf-result-diff-plugin & composer install
+    -
     # - ./wp-cli.phar plugin activate cf-result-diff-plugin --path=wordpress
 
     # Install cf-connected-forms
     - git clone https://github.com/CalderaWP/cf-connected-forms.git wordpress/wp-content/plugins/cf-connected-forms
+    - npm install gulp -g
     - cd wordpress/wp-content/plugins/cf-connected-forms && composer install && npm install && gulp
 
     # Install Ghost runner plugin to home directory
