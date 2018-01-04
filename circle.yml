@@ -8,7 +8,7 @@ machine:
     ngork_subdomain: calderadev
 
   php:
-    version: 7.0.17
+    version: 7.0.4
     # version: 5.5.31
 
   node:
@@ -69,6 +69,11 @@ dependencies:
     - git clone https://gitlab.com/caldera-labs/ghostrunner-runner-runner.git
     - cp .env ghost-runner-runner
     - cd ghostrunner-runner-runner/ && npm install
+
+    # Activate Plugins
+    - ./wp-cli.phar plugin activate caldera-forms
+    - ./wp-cli.phar plugin activate cf-connected-forms
+    - ./wp-cli.phar plugin activate cf-result-diff-plugin
 
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
