@@ -52,6 +52,9 @@ dependencies:
     - git clone https://gitlab.com/caldera-labs/cf-result-diff-plugin.git wordpress/wp-content/plugins/cf-result-diff-plugin
     # - ./wp-cli.phar plugin activate cf-result-diff-plugin --path=wordpress
 
+    # Install cf-connected-forms
+    - git clone https://github.com/CalderaWP/cf-connected-forms.git wordpress/wp-content/plugins/cf-connected-forms
+
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
     - unzip ngrok-stable-linux-amd64.zip
