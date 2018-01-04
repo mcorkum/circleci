@@ -6,6 +6,7 @@ machine:
     ngrok_url: calderadev.ngrok.io
     ngork_auth_token: d8NfARcu2wLE1hyeQd9J_6m4RuZQCCoKXJ3etDGnMv
     ngork_subdomain: calderadev
+    WP_CLI_CONFIG_PATH: /home/ubuntu/circleci
 
   php:
     version: 5.5.31
