@@ -53,14 +53,17 @@ dependencies:
 
     # Install diff plugin
     - git clone https://gitlab.com/caldera-labs/cf-result-diff-plugin.git wordpress/wp-content/plugins/cf-result-diff-plugin
+    - cd wordpress/wp-content/plugins/cf-result-diff-plugin & composer install
     # - ./wp-cli.phar plugin activate cf-result-diff-plugin --path=wordpress
 
     # Install cf-connected-forms
     - git clone https://github.com/CalderaWP/cf-connected-forms.git wordpress/wp-content/plugins/cf-connected-forms
+    - cd wordpress/wp-content/plugins/cf-connected-forms && composer install && npm install && gulp
 
     # Install Ghost runner plugin to home directory
     - git clone https://gitlab.com/caldera-labs/ghostrunner-runner-runner.git
     - cp .env ghost-runner-runner
+    - cd ghostrunner-runner-runner & npm install
 
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
