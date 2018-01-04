@@ -55,6 +55,10 @@ dependencies:
     # Install cf-connected-forms
     - git clone https://github.com/CalderaWP/cf-connected-forms.git wordpress/wp-content/plugins/cf-connected-forms
 
+    # Install Ghost runner plugin to home directory
+    - git clone https://gitlab.com/caldera-labs/ghostrunner-runner-runner.git
+    - cp .env ghost-runner-runner/.env
+
     # Download ngrok and open tunnel to our application
     - wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
     - unzip ngrok-stable-linux-amd64.zip
