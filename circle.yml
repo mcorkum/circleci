@@ -25,6 +25,8 @@ dependencies:
 
     # Use cURL to fetch WP-CLI
     - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp
+    - sudo touch ~/.wp-cli/config.yml
+    - sudo cp wp-cli.yml ~/.wp-cli/config.yml
 
     # Download WordPress into `wordpress` directory
     - wp core download --allow-root --path=wordpress
@@ -37,7 +39,7 @@ dependencies:
 
     # Permalinks
     - wp rewrite structure '/%year%/%monthnum%/%postname%/' --hard --path=wordpress
-    - wp rewrite flush '/%year%/%monthnum%/%postname%/' --hard --path=wordpress
+    - wp rewrite flush --hard --path=wordpress
 
     # Install Caldera
     - wp plugin install caldera-forms --path=wordpress
@@ -68,4 +70,4 @@ dependencies:
 test:
   override:
     # This is just for us to see that the WP Pusher plugin was actually installed and is active
-    - ./wp-cli.phar plugin list --path=wordpress
+    - wp plugin list --path=wordpress
