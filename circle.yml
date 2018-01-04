@@ -30,6 +30,7 @@ dependencies:
     # - sudo rm /etc/apache2/mods-enabled/php5.load
 
     - sudo cp ./apache-ci.conf /etc/apache2/sites-available/wordpress.conf
+    - sudo a2dismod php5
     - cd /etc/apache2/sites-available; sudo a2enmod rewrite; sudo service apache2 restart; sudo a2ensite wordpress; sudo service apache2 reload
 
     # No password is required for the MySQL user `ubuntu`
