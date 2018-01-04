@@ -30,9 +30,7 @@ dependencies:
     - mysql -e 'CREATE DATABASE wordpress;' -uroot
 
     # Use cURL to fetch WP-CLI
-    - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp
-    - sudo mkdir ~/.wp-cli
-    - sudo cp wp-cli.yml ~/.wp-cli/config.yml
+    - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar wp
 
     # Download WordPress into `wordpress` directory
     - wp core download --allow-root --path=wordpress
