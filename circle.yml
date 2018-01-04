@@ -28,9 +28,9 @@ dependencies:
 
     # Make sure WP-CLI is executable
     - chmod +x wp-cli.phar
-    - echo 'alias wp="php /home/ubuntu/wp-cli/wp-cli.phar"' >> ~/.bashrc
-    - mv wp-cli.phar /home/ubuntu/wp-cli/
-    - mv config.yml /home/ubuntu/wp-cli/
+    - echo 'alias wp="php /home/ubuntu/wp-cli.phar"' >> ~/.bashrc
+    - mv wp-cli.phar /home/ubuntu/
+    - mv config.yml /home/ubuntu/
     - source ~/.bashrc
 
     # Download WordPress into `wordpress` directory
