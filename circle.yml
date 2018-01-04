@@ -28,25 +28,21 @@ dependencies:
 
     # Make sure WP-CLI is executable
     - chmod +x wp-cli.phar
-    - echo 'alias wp="php /home/ubuntu/wp-cli.phar"' >> ~/.bashrc
-    - mv wp-cli.phar /home/ubuntu/
-    - mv config.yml /home/ubuntu/
-    - source ~/.bashrc
 
     # Download WordPress into `wordpress` directory
-    - wp core download --allow-root --path=wordpress
+    - ./wp-cli.phar core download --allow-root --path=wordpress
 
     # Generate `wp-config.php` file
-    - wp core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1
+    - ./wp-cli.phar core config --allow-root --dbname=wordpress --dbuser=root --dbuser=root --dbhost=127.0.0.1
 
     # Install WordPress
-    - wp core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url={$ngrok_url} --title=WordPress
+    - ./wp-cli.phar core install --allow-root --admin_name=admin --admin_password=admin --admin_email=admin@example.com --url={$ngrok_url} --title=WordPress
 
     # Permalinks
-    - wp rewrite structure '/%year%/%monthnum%/%postname%/' --hard
+    - ./wp-cli.phar rewrite structure '/%year%/%monthnum%/%postname%/' --hard
 
     # Install Caldera
-    - wp plugin install caldera-forms
+    - ./wp-cli.phar plugin install caldera-forms
 
     # Install diff plugin
     - git clone https://gitlab.com/caldera-labs/cf-result-diff-plugin.git wordpress/wp-content/plugins/cf-result-diff-plugin
